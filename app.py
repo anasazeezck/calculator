@@ -1,14 +1,7 @@
 import streamlit as st
 
 def round_price(price):
-    integer_part = int(price)
-    decimal_part = price - integer_part
-    if decimal_part > 0.5:
-        return integer_part + 0.99
-    elif decimal_part < 0.5:
-        return integer_part + 0.49
-    else:
-        return integer_part + 0.49
+    return int(price) + 0.99  # Always round to .99
 
 def calculate_price(cost_price):
     net_margin = 0.30  # 30% net margin (Deliveroo + our margin)
@@ -19,6 +12,6 @@ st.title("Real Pharmacy Pricing Calculator")
 
 cost_price = st.number_input("Enter Cost Price (AED):", min_value=0.01, step=0.01)
 
-if st.button("Calculate"):
+if cost_price:
     selling_price = calculate_price(cost_price)
     st.success(f"Selling Price: {selling_price} AED")
