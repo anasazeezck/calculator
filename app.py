@@ -12,6 +12,7 @@ st.title("Real Pharmacy Pricing Calculator")
 
 cost_price = st.number_input("Enter Cost Price (AED):", min_value=0.01, step=0.01)
 
-if cost_price:
-    selling_price = calculate_price(cost_price)
-    st.success(f"Selling Price: {selling_price} AED")
+if st.button("Proceed"):
+    if cost_price:
+        selling_price = calculate_price(cost_price)
+        st.success(f"Selling Price: {selling_price} AED")
