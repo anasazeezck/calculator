@@ -1,9 +1,19 @@
 import streamlit as st
 
+def round_price(price):
+    integer_part = int(price)
+    decimal_part = price - integer_part
+    if decimal_part > 0.5:
+        return integer_part + 0.99
+    elif decimal_part < 0.5:
+        return integer_part + 0.49
+    else:
+        return integer_part + 0.49
+
 def calculate_price(cost_price):
     net_margin = 0.30  # 30% net margin (Deliveroo + our margin)
     selling_price = cost_price / (1 - net_margin)
-    return round(selling_price, 2)
+    return round_price(selling_price)
 
 st.title("Real Pharmacy Pricing Calculator")
 
